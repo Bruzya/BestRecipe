@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		522898A22C31DC3D0013FF87 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522898A12C31DC3D0013FF87 /* Network.swift */; };
 		522898A42C31DD550013FF87 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522898A32C31DD550013FF87 /* OnboardingViewController.swift */; };
-		522898A62C31DD610013FF87 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522898A52C31DD610013FF87 /* TabBarController.swift */; };
 		522898A82C31DD6A0013FF87 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522898A72C31DD6A0013FF87 /* MainViewController.swift */; };
 		522898AA2C31DD750013FF87 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522898A92C31DD750013FF87 /* TrendingViewController.swift */; };
 		522898AC2C31DD7B0013FF87 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522898AB2C31DD7B0013FF87 /* DetailViewController.swift */; };
@@ -24,12 +23,14 @@
 		526DF7FD2C30DA11008A7818 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 526DF7FB2C30DA11008A7818 /* Poppins-Regular.ttf */; };
 		526DF80A2C30DE07008A7818 /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF8092C30DE07008A7818 /* UIView + ext.swift */; };
 		526DF80D2C30DE3B008A7818 /* UIStackView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF80C2C30DE3B008A7818 /* UIStackView + ext.swift */; };
+		C6C26F3C2C3318C40000470E /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C26F3B2C3318C40000470E /* PlusButton.swift */; };
+		C6C26F442C333F120000470E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C26F432C333F120000470E /* CustomTabBarController.swift */; };
+		C6C26F472C3340A30000470E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C26F462C3340A30000470E /* CustomTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		522898A12C31DC3D0013FF87 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		522898A32C31DD550013FF87 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		522898A52C31DD610013FF87 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		522898A72C31DD6A0013FF87 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		522898A92C31DD750013FF87 /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		522898AB2C31DD7B0013FF87 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +47,9 @@
 		526DF7FB2C30DA11008A7818 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		526DF8092C30DE07008A7818 /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
 		526DF80C2C30DE3B008A7818 /* UIStackView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + ext.swift"; sourceTree = "<group>"; };
+		C6C26F3B2C3318C40000470E /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
+		C6C26F432C333F120000470E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		C6C26F462C3340A30000470E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +153,7 @@
 				526DF8072C30DC02008A7818 /* Trending */,
 				526DF8042C30DBDF008A7818 /* Detail */,
 				526DF8062C30DBE7008A7818 /* CreateRecipe */,
-				526DF8032C30DBDA008A7818 /* Profile */,
+				C6C26F392C330E770000470E /* Profile */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -209,7 +213,9 @@
 		526DF8002C30DBCB008A7818 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				522898A52C31DD610013FF87 /* TabBarController.swift */,
+				C6C26F3A2C33189F0000470E /* Views */,
+				C6C26F432C333F120000470E /* CustomTabBarController.swift */,
+				C6C26F462C3340A30000470E /* CustomTabBar.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -220,13 +226,6 @@
 				522898A32C31DD550013FF87 /* OnboardingViewController.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		526DF8032C30DBDA008A7818 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		526DF8042C30DBDF008A7818 /* Detail */ = {
@@ -266,6 +265,21 @@
 				522898AD2C31DD820013FF87 /* Controller */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		C6C26F392C330E770000470E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C6C26F3A2C33189F0000470E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C6C26F3B2C3318C40000470E /* PlusButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,16 +355,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				526DF7F92C30D98E008A7818 /* Font.swift in Sources */,
+				C6C26F472C3340A30000470E /* CustomTabBar.swift in Sources */,
 				526DF7E22C30D84F008A7818 /* LaunchViewController.swift in Sources */,
 				522898AA2C31DD750013FF87 /* TrendingViewController.swift in Sources */,
 				522898AC2C31DD7B0013FF87 /* DetailViewController.swift in Sources */,
 				526DF7DE2C30D84F008A7818 /* AppDelegate.swift in Sources */,
-				522898A62C31DD610013FF87 /* TabBarController.swift in Sources */,
+				C6C26F442C333F120000470E /* CustomTabBarController.swift in Sources */,
 				522898A42C31DD550013FF87 /* OnboardingViewController.swift in Sources */,
 				526DF80D2C30DE3B008A7818 /* UIStackView + ext.swift in Sources */,
 				526DF7E02C30D84F008A7818 /* SceneDelegate.swift in Sources */,
 				522898A22C31DC3D0013FF87 /* Network.swift in Sources */,
 				522898B22C31DDAB0013FF87 /* Recipe.swift in Sources */,
+				C6C26F3C2C3318C40000470E /* PlusButton.swift in Sources */,
 				526DF80A2C30DE07008A7818 /* UIView + ext.swift in Sources */,
 				522898A82C31DD6A0013FF87 /* MainViewController.swift in Sources */,
 			);
