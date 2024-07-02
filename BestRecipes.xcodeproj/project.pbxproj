@@ -23,6 +23,7 @@
 		526DF7FD2C30DA11008A7818 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 526DF7FB2C30DA11008A7818 /* Poppins-Regular.ttf */; };
 		526DF80A2C30DE07008A7818 /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF8092C30DE07008A7818 /* UIView + ext.swift */; };
 		526DF80D2C30DE3B008A7818 /* UIStackView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF80C2C30DE3B008A7818 /* UIStackView + ext.swift */; };
+		C619A4812C3466D6005866C3 /* TabBarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C619A4802C3466D6005866C3 /* TabBarShape.swift */; };
 		C6C26F3C2C3318C40000470E /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C26F3B2C3318C40000470E /* PlusButton.swift */; };
 		C6C26F442C333F120000470E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C26F432C333F120000470E /* CustomTabBarController.swift */; };
 		C6C26F472C3340A30000470E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C26F462C3340A30000470E /* CustomTabBar.swift */; };
@@ -47,6 +48,7 @@
 		526DF7FB2C30DA11008A7818 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		526DF8092C30DE07008A7818 /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
 		526DF80C2C30DE3B008A7818 /* UIStackView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + ext.swift"; sourceTree = "<group>"; };
+		C619A4802C3466D6005866C3 /* TabBarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarShape.swift; sourceTree = "<group>"; };
 		C6C26F3B2C3318C40000470E /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		C6C26F432C333F120000470E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C6C26F462C3340A30000470E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				C6C26F3B2C3318C40000470E /* PlusButton.swift */,
+				C619A4802C3466D6005866C3 /* TabBarShape.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				C6C26F442C333F120000470E /* CustomTabBarController.swift in Sources */,
 				522898A42C31DD550013FF87 /* OnboardingViewController.swift in Sources */,
 				526DF80D2C30DE3B008A7818 /* UIStackView + ext.swift in Sources */,
+				C619A4812C3466D6005866C3 /* TabBarShape.swift in Sources */,
 				526DF7E02C30D84F008A7818 /* SceneDelegate.swift in Sources */,
 				522898A22C31DC3D0013FF87 /* Network.swift in Sources */,
 				522898B22C31DDAB0013FF87 /* Recipe.swift in Sources */,

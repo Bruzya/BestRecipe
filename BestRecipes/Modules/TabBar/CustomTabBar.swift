@@ -54,10 +54,6 @@ class CustomTabBar: UITabBar {
 // MARK: - Setup Constraints
 extension CustomTabBar {
     private func setupConstraints() {
-        setupPlusButtonConstraints()
-    }
-    
-    private func setupPlusButtonConstraints() {
         NSLayoutConstraint.activate([
             plusButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             plusButton.centerYAnchor.constraint(equalTo: topAnchor),
@@ -77,11 +73,7 @@ extension CustomTabBar {
 // MARK: - Configure Shape
 extension CustomTabBar {
     private func configureShape() {
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = createPath()
-        shapeLayer.lineWidth = 3.0
-        shapeLayer.strokeColor = UIColor.white.cgColor
-        shapeLayer.fillColor = UIColor.white.cgColor
+        let shapeLayer = TabBarShape(size: frame.size)
         
         if let oldShapeLayer = self.shapeLayer {
             oldShapeLayer.removeFromSuperlayer()
@@ -89,43 +81,6 @@ extension CustomTabBar {
         
         self.layer.insertSublayer(shapeLayer, at: 0)
         self.shapeLayer = shapeLayer
-    }
-}
-
-// MARK: - Create Bezier Path
-extension CustomTabBar {
-    private func createPath() -> CGPath {
-        let path = UIBezierPath()
-        
-        // Start point
-        path.move(to: CGPoint(x: 0, y: 0))
-        
-        // Line to left curve start
-        path.addLine(to: CGPoint(x: (frame.width / 2) - 70, y: 0))
-        
-        // Curve down
-        path.addCurve(
-            to: CGPoint(x: frame.width / 2, y: 50),
-            controlPoint1: CGPoint(x: (frame.width / 2) - 35, y: 0),
-            controlPoint2: CGPoint(x: frame.width / 2 - 35, y: 50)
-        )
-        
-        // Curve up
-        path.addCurve(
-            to: CGPoint(x: (frame.width / 2) + 70, y: 0),
-            controlPoint1: CGPoint(x: frame.width / 2 + 35, y: 50),
-            controlPoint2: CGPoint(x: frame.width / 2 + 35, y: 0)
-        )
-        
-        // Line to end point
-        path.addLine(to: CGPoint(x: frame.width, y: 0))
-        
-        // Lines to close the path
-        path.addLine(to: CGPoint(x: frame.width, y: frame.height))
-        path.addLine(to: CGPoint(x: 0, y: frame.height))
-        path.close()
-        
-        return path.cgPath
     }
 }
 
