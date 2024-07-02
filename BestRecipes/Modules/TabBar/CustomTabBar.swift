@@ -11,6 +11,7 @@ class CustomTabBar: UITabBar {
     // MARK: - Private properties
     private var shapeLayer: CALayer?
     private let plusButton = PlusButton(type: .system)
+    private var plusButtonCenterXConstraint: NSLayoutConstraint?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -32,12 +33,7 @@ class CustomTabBar: UITabBar {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        /*let height = 90.0
-        var tabFrame = self.frame
-        tabFrame.size.height = height
-        tabFrame.origin.y = self.frame.origin.y + self.frame.height - height
-        self.frame = tabFrame*/
+        print(plusButton.frame.size.width)
     }
     
     // MARK: - Set Views
@@ -48,25 +44,6 @@ class CustomTabBar: UITabBar {
     // MARK: - Configure UI
     private func configureUI() {
         plusButton.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
-    }
-}
-
-// MARK: - Setup Constraints
-extension CustomTabBar {
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            plusButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            plusButton.centerYAnchor.constraint(equalTo: topAnchor),
-            plusButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6),
-            plusButton.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6)
-        ])
-    }
-}
-
-// MARK: - Hit test
-extension CustomTabBar {
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        plusButton.frame.contains(point) ? plusButton : super.hitTest(point, with: event)
     }
 }
 
@@ -84,9 +61,37 @@ extension CustomTabBar {
     }
 }
 
+// MARK: - Setup Constraints
+extension CustomTabBar {
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            plusButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            plusButton.centerYAnchor.constraint(equalTo: topAnchor, constant: Metrics.plusButtonTopIndent),
+            plusButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Metrics.plusButtonMultiplier),
+            plusButton.widthAnchor.constraint(equalTo: heightAnchor, multiplier: Metrics.plusButtonMultiplier)
+        ])
+    }
+}
+
 // MARK: - Actions
 extension CustomTabBar {
     @objc private func plusButtonPressed(_ sender: UIButton) {
         print("click plus button")
     }
+}
+
+// MARK: - Hit test
+extension CustomTabBar {
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        plusButton.frame.contains(point) ? plusButton : super.hitTest(point, with: event)
+    }
+}
+
+// MARK: - Metrics
+fileprivate struct Metrics {
+    static let plusButtonTopIndent: CGFloat = 6.0
+    static let plusButtonMultiplier: CGFloat = 0.56
+    static let itemSpacing: CGFloat = 24.0
+    
+    private init () {}
 }

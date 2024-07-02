@@ -22,9 +22,15 @@ final class TabBarShape: CAShapeLayer, ShapeLayerProtocol {
         super.init()
         
         path = createPath(with: size)
+        
         lineWidth = 3.0
         strokeColor = UIColor.white.cgColor
         fillColor = UIColor.white.cgColor
+        
+        shadowOffset = CGSize(width: 0, height: -1)
+        shadowRadius = 8
+        shadowColor = UIColor.greyShadow.cgColor
+        shadowOpacity = 1.0
     }
     
     required init?(coder: NSCoder) {
@@ -36,33 +42,39 @@ final class TabBarShape: CAShapeLayer, ShapeLayerProtocol {
 extension TabBarShape {
     private func createPath(with size: CGSize) -> CGPath {
         let path = UIBezierPath()
+        let centerWidth = size.width / 2
+        let curveHeight = 37.0
         
         // Start point
-        path.move(to: CGPoint(x: 0, y: 0))
+        path.move(to: .zero)
         
         // Line to left curve start
-        path.addLine(to: CGPoint(x: (size.width / 2) - 70, y: 0))
+        path.addLine(to: CGPoint(x: centerWidth - 54, y: 0))
         
         // Curve down
         path.addCurve(
-            to: CGPoint(x: size.width / 2, y: 50),
-            controlPoint1: CGPoint(x: (size.width / 2) - 35, y: 0),
-            controlPoint2: CGPoint(x: size.width / 2 - 35, y: 50)
+            to: CGPoint(x: size.width / 2, y: curveHeight),
+            controlPoint1: CGPoint(x: centerWidth - 30, y: 0),
+            controlPoint2: CGPoint(x: centerWidth - 35, y: curveHeight)
         )
         
         // Curve up
         path.addCurve(
-            to: CGPoint(x: (size.width / 2) + 70, y: 0),
-            controlPoint1: CGPoint(x: size.width / 2 + 35, y: 50),
-            controlPoint2: CGPoint(x: size.width / 2 + 35, y: 0)
+            to: CGPoint(x: (size.width / 2) + 54, y: 0),
+            controlPoint1: CGPoint(x: centerWidth + 35, y: curveHeight),
+            controlPoint2: CGPoint(x: centerWidth + 30, y: 0)
         )
         
-        // Line to end point
+        // Line to right curve end
         path.addLine(to: CGPoint(x: size.width, y: 0))
         
-        // Lines to close the path
+        // Right bottom line
         path.addLine(to: CGPoint(x: size.width, y: size.height))
+        
+        // Bottom line
         path.addLine(to: CGPoint(x: 0, y: size.height))
+        
+        // Close path
         path.close()
         
         return path.cgPath
