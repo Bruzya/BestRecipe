@@ -65,7 +65,7 @@ extension CustomTabBarController {
 
 // MARK: - Create TabBar Item
 extension CustomTabBarController {
-    private func createTabBarItem(image: UIImage, selectedImage: UIImage, tag: Int, vc: UIViewController) -> UIViewController {
+    private func createTabBarItem(image: UIImage?, selectedImage: UIImage?, tag: Int, vc: UIViewController) -> UIViewController {
         vc.tabBarItem.image = image
         vc.tabBarItem.selectedImage = selectedImage
         vc.tabBarItem.tag = tag
@@ -77,7 +77,7 @@ extension CustomTabBarController {
 class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = .systemIndigo
     }
 }
 

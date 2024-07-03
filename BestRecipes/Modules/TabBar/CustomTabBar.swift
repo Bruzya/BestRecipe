@@ -33,7 +33,7 @@ class CustomTabBar: UITabBar {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        print(plusButton.frame.size.width)
+        layoutTabBarItems()
     }
     
     // MARK: - Set Views
@@ -61,14 +61,40 @@ extension CustomTabBar {
     }
 }
 
+// MARK: - Layout TabBar items
+extension CustomTabBar {
+    private func layoutTabBarItems() {
+        // array with view controllers only
+        let tabBarItems = subviews.filter { $0 is UIControl && $0 != plusButton }
+        let center = bounds.width / 2
+        
+        let itemWidth = Metrics.itemWidth
+        let itemSpacing = Metrics.itemSpacing
+        let itemTopIndent = Metrics.itemTopIndent
+        
+        var xOffset = (center / 2) - itemWidth - itemSpacing
+        
+        for index in tabBarItems.indices {
+            if index == 2 {
+                let spacingFromCenter = center - tabBarItems[index-1].frame.maxX
+                xOffset = center + spacingFromCenter
+            }
+            
+            // set frame for tabBar item
+            tabBarItems[index].frame = CGRect(x: xOffset, y: itemTopIndent, width: itemWidth, height: itemWidth)
+            xOffset += itemWidth + itemSpacing
+        }
+    }
+}
+
 // MARK: - Setup Constraints
 extension CustomTabBar {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             plusButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             plusButton.centerYAnchor.constraint(equalTo: topAnchor, constant: Metrics.plusButtonTopIndent),
-            plusButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Metrics.plusButtonMultiplier),
-            plusButton.widthAnchor.constraint(equalTo: heightAnchor, multiplier: Metrics.plusButtonMultiplier)
+            plusButton.heightAnchor.constraint(equalToConstant: Metrics.plusButtonSize),
+            plusButton.widthAnchor.constraint(equalToConstant: Metrics.plusButtonSize)
         ])
     }
 }
@@ -89,9 +115,12 @@ extension CustomTabBar {
 
 // MARK: - Metrics
 fileprivate struct Metrics {
-    static let plusButtonTopIndent: CGFloat = 6.0
-    static let plusButtonMultiplier: CGFloat = 0.56
+    static let plusButtonTopIndent: CGFloat = 5.0
+    static let plusButtonSize: CGFloat = 48.0
+    
+    static let itemWidth: CGFloat = 40.0
     static let itemSpacing: CGFloat = 24.0
+    static let itemTopIndent: CGFloat = 10.0
     
     private init () {}
 }
