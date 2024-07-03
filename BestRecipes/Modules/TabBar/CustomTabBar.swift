@@ -66,23 +66,33 @@ extension CustomTabBar {
     private func layoutTabBarItems() {
         // array with view controllers only
         let tabBarItems = subviews.filter { $0 is UIControl && $0 != plusButton }
-        let center = bounds.width / 2
         
+        guard tabBarItems.count == 4 else {
+            fatalError("This layout assumes exactly 4 tab bar items")
+        }
+        
+        let center = bounds.width / 2
         let itemWidth = Metrics.itemWidth
         let itemSpacing = Metrics.itemSpacing
         let itemTopIndent = Metrics.itemTopIndent
         
-        var xOffset = (center / 2) - itemWidth - itemSpacing
+        var xOffset = center - (itemWidth * 2) - (itemSpacing * 2) - itemWidth
         
         for index in tabBarItems.indices {
             if index == 2 {
                 let spacingFromCenter = center - tabBarItems[index-1].frame.maxX
-                xOffset = center + spacingFromCenter
+                //xOffset = center + spacingFromCenter
+                xOffset = center + itemWidth + itemSpacing
+                print(spacingFromCenter, tabBarItems[index-1].frame.maxX, center)
             }
             
             // set frame for tabBar item
             tabBarItems[index].frame = CGRect(x: xOffset, y: itemTopIndent, width: itemWidth, height: itemWidth)
             xOffset += itemWidth + itemSpacing
+            
+            if index == 2 {
+                print(tabBarItems[index].frame.minX)
+            }
         }
     }
 }

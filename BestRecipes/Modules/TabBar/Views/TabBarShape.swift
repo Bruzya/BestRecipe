@@ -18,7 +18,7 @@ extension ShapeLayerProtocol {
 }
 
 final class TabBarShape: CAShapeLayer, ShapeLayerProtocol {
-    required init(size: CGSize) {
+    init(size: CGSize) {
         super.init()
         
         path = createPath(with: size)
