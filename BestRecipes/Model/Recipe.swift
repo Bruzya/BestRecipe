@@ -13,7 +13,7 @@ struct Recipe: Decodable {
     let rating: Double
     let readyInMinutes: Int
     //let reviewsCount: Int
-    let imageURL: String
+    let imageURL: String?
     let extendedIngredients: [Ingredient]
     
     enum CodingKeys: String, CodingKey {

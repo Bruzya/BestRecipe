@@ -94,7 +94,7 @@ extension TestVC {
         
         cell.textLabel?.text = recipe.title
         
-        NetworkManager.shared.fetchImage(from: recipe.imageURL) { result in
+        NetworkManager.shared.fetchImage(from: recipe.imageURL ?? "") { result in
             switch result {
             case .success(let imageData):
                 cell.imageView?.image = UIImage(data: imageData)
