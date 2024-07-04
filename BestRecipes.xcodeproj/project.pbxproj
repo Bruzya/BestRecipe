@@ -48,6 +48,12 @@
 		526DF7FD2C30DA11008A7818 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 526DF7FB2C30DA11008A7818 /* Poppins-Regular.ttf */; };
 		526DF80A2C30DE07008A7818 /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF8092C30DE07008A7818 /* UIView + ext.swift */; };
 		526DF80D2C30DE3B008A7818 /* UIStackView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF80C2C30DE3B008A7818 /* UIStackView + ext.swift */; };
+		B35757822C36D79400965090 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35757812C36D79400965090 /* Detail.swift */; };
+		B35757852C36D86300965090 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35757842C36D86300965090 /* DetailView.swift */; };
+		B35757892C36D87E00965090 /* DetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35757882C36D87E00965090 /* DetailTextView.swift */; };
+		B357578B2C36D89200965090 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B357578A2C36D89200965090 /* DetailTableView.swift */; };
+		B357578D2C36D8CF00965090 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B357578C2C36D8CF00965090 /* DetailTableViewCell.swift */; };
+		B357578F2C36DA9900965090 /* String + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B357578E2C36DA9900965090 /* String + ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +100,12 @@
 		526DF7FB2C30DA11008A7818 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		526DF8092C30DE07008A7818 /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
 		526DF80C2C30DE3B008A7818 /* UIStackView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + ext.swift"; sourceTree = "<group>"; };
+		B35757812C36D79400965090 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Detail.swift; path = "../../../../../tests/tests/New Group/Model/Detail.swift"; sourceTree = "<group>"; };
+		B35757842C36D86300965090 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailView.swift; path = "../../../../../tests/tests/New Group/Model/DetailView.swift"; sourceTree = "<group>"; };
+		B35757882C36D87E00965090 /* DetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTextView.swift; sourceTree = "<group>"; };
+		B357578A2C36D89200965090 /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailTableView.swift; path = "../../../../../tests/tests/New Group/Model/DetailTableView.swift"; sourceTree = "<group>"; };
+		B357578C2C36D8CF00965090 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailTableViewCell.swift; path = "../../../../../../tests/tests/New Group/Model/DetailTableViewCell.swift"; sourceTree = "<group>"; };
+		B357578E2C36DA9900965090 /* String + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String + ext.swift"; path = "../../../../../../Library/Mobile Documents/.Trash/BestRecipes/BestRecipes/Helpers/Extensions/String + ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +334,7 @@
 				526DF8092C30DE07008A7818 /* UIView + ext.swift */,
 				526DF80C2C30DE3B008A7818 /* UIStackView + ext.swift */,
 				522898C32C32E6220013FF87 /* TextField + ext.swift */,
+				B357578E2C36DA9900965090 /* String + ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -381,6 +394,8 @@
 		526DF8042C30DBDF008A7818 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				B35757802C36D74500965090 /* Model */,
+				B357577F2C36D6E900965090 /* View */,
 				522898B02C31DD960013FF87 /* Controller */,
 			);
 			path = Detail;
@@ -418,6 +433,33 @@
 				522898AD2C31DD820013FF87 /* Controller */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		B357577F2C36D6E900965090 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B35757842C36D86300965090 /* DetailView.swift */,
+				B35757882C36D87E00965090 /* DetailTextView.swift */,
+				B357578A2C36D89200965090 /* DetailTableView.swift */,
+				B35757832C36D84100965090 /* DetailCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B35757802C36D74500965090 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B35757812C36D79400965090 /* Detail.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B35757832C36D84100965090 /* DetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				B357578C2C36D8CF00965090 /* DetailTableViewCell.swift */,
+			);
+			path = DetailCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -496,8 +538,10 @@
 				526DF7E22C30D84F008A7818 /* LaunchViewController.swift in Sources */,
 				24AE74602C3554B900CED2BA /* RecipePreview.swift in Sources */,
 				24AE745E2C35495F00CED2BA /* SearchResult.swift in Sources */,
+				B35757822C36D79400965090 /* Detail.swift in Sources */,
 				245594BC2C34271100F07D86 /* Ingredient.swift in Sources */,
 				522898AA2C31DD750013FF87 /* TrendingViewController.swift in Sources */,
+				B35757852C36D86300965090 /* DetailView.swift in Sources */,
 				522898D92C32FD700013FF87 /* BRRatingView.swift in Sources */,
 				522898AC2C31DD7B0013FF87 /* DetailViewController.swift in Sources */,
 				522898CB2C32E9CB0013FF87 /* BRTrendingFooter.swift in Sources */,
@@ -519,6 +563,9 @@
 				245594BE2C34427000F07D86 /* TestVC.swift in Sources */,
 				526DF80A2C30DE07008A7818 /* UIView + ext.swift in Sources */,
 				522898D12C32EFC00013FF87 /* BRListItem.swift in Sources */,
+				B357578B2C36D89200965090 /* DetailTableView.swift in Sources */,
+				B357578D2C36D8CF00965090 /* DetailTableViewCell.swift in Sources */,
+				B35757892C36D87E00965090 /* DetailTextView.swift in Sources */,
 				522898D52C32F2900013FF87 /* BRMockData.swift in Sources */,
 				522898A82C31DD6A0013FF87 /* MainViewController.swift in Sources */,
 				522898E52C34239B0013FF87 /* Builder.swift in Sources */,
@@ -529,6 +576,7 @@
 				522898DE2C337FB90013FF87 /* CreateCells.swift in Sources */,
 				522898EE2C3433EF0013FF87 /* TrendingPresenter.swift in Sources */,
 				522898C92C32E9980013FF87 /* BRSeeAllHeader.swift in Sources */,
+				B357578F2C36DA9900965090 /* String + ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
