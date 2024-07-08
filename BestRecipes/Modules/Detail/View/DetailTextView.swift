@@ -63,16 +63,16 @@ private extension DetailText {
         verticalStack.spacing = 6
         
         instructionLabel.text = "Instructions"
-        instructionLabel.font = .systemFont(ofSize: 22, weight: .semibold)
+        instructionLabel.font = Font.getFont(.poppinsBold, size: 20)
         
-        textView.font = .systemFont(ofSize: 18, weight: .medium)
+        textView.font = Font.getFont(.poppinsRegular, size: 16)
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.textContainerInset = UIEdgeInsets.zero
         textView.textContainer.lineFragmentPadding = 0
         
-        redText.font = .systemFont(ofSize: 18, weight: .medium)
+        redText.font = Font.getFont(.poppinsRegular, size: 16)
         redText.textColor = #colorLiteral(red: 0.9137254902, green: 0.2705882353, blue: 0.3647058824, alpha: 1)
         redText.numberOfLines = 0
     }
@@ -84,9 +84,16 @@ private extension DetailText {
         
         DispatchQueue.main.async {
             let instructions = self.textInstruction.instruction.map { " \($0.number). \($0.step)" }
-            self.textView.text = instructions.joined(separator: "/n")
+            self.textView.text = instructions.joined(separator: "\n")
             self.redText.text = self.textInstruction.redText
         }
     }
+}
+
+
+@available(iOS 17.0, *)
+#Preview {
+    let someVC = DetailViewController()
+    return someVC
 }
 
