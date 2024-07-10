@@ -16,10 +16,13 @@ protocol RouterProtocol: AnyObject {
     func initialViewController()
     func showTrending()
     func popToRoot()
+    func popOnboarding()
+    func pushOBInCV()
 }
 
 
 final class Router: RouterProtocol {
+    
     var navigationController: UINavigationController?
     var builder: BuilderProtocol?
     
@@ -67,5 +70,21 @@ final class Router: RouterProtocol {
             navigationController.popToRootViewController(animated: true)
         }
     }
+    
+    func popOnboarding() {
+        if let navigationController {
+            guard let mainViewController = builder?.getOnBoardingViewController(router: self) else { return }
+            navigationController.viewControllers = [mainViewController]
+        }
+    }
+    
+    func pushOBInCV() {
+        if let navigationController{
+            let vc = OnboardingCollectionView()
+            navigationController.pushViewController(vc, animated: true)
+        }
+        
+    }
+    
 }
 
