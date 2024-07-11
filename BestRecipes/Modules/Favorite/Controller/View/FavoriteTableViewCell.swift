@@ -12,6 +12,9 @@ import SwiftUI
 
 final class FavoriteTableViewCell: UITableViewCell {
     
+  
+    
+    
     //MARK: - UI
     
     private let backgroundImageView: UIImageView = {
@@ -83,8 +86,25 @@ extension FavoriteTableViewCell {
         authorImageView.image = authorImage
         authorNameLabel.text = author
         favoritesButton.tag = index.item
+        
     }
+    func configureCell(recipe: Recipe){
+        ratingView.rateLabel.text = recipe.rating?.description
+//        backgroundImageView.image = reci
+        
+        titleLabel.text = recipe.title
+        authorImageView.image = .author2
+        authorNameLabel.text = recipe.author
+        
+        DataManager.shared.getImage(recipe.imageURL ?? "") { data in
+            DispatchQueue.main.async {
+                self.backgroundImageView.image = UIImage(data: data)
+            }
+        }
+    }
+    
 }
+
 
 
 //MARK: - Internal Methods

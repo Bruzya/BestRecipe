@@ -37,3 +37,4 @@ final class FavoritePresenter: FavoritePresenterProtocol {
         router?.popToRoot()
     }
 }
+

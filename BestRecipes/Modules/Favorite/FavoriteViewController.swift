@@ -29,7 +29,7 @@ final class FavoriteViewController: UIViewController, TrendingViewProtocol {
         
         title = "Saved recipes"
         view.addSubview(tableView)
-        
+        view.backgroundColor = .white
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
@@ -39,7 +39,7 @@ final class FavoriteViewController: UIViewController, TrendingViewProtocol {
 
 //MARK: - Расширение для превью Превью
 
-extension FavoriteViewController {
+extension UINavigationController {
     
     private struct Preview: UIViewControllerRepresentable {
         let viewController: UIViewController
@@ -58,7 +58,7 @@ extension FavoriteViewController {
 
 struct ViewControllerProvider: PreviewProvider {
     static var previews: some View {
-        FavoriteViewController().showPreview()
+        UINavigationController (rootViewController: FavoriteViewController()).showPreview()
         
     }
 }

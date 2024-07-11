@@ -9,6 +9,8 @@ import UIKit
 import SwiftUI
 
 final class FavoriteTableView: UITableView {
+
+    var recipes: [Recipe] = []
     
     //MARK: - Properties
     
@@ -17,7 +19,7 @@ final class FavoriteTableView: UITableView {
         
         configure()
         setDelegates()
-        
+    
         register(FavoriteTableViewCell.self, forCellReuseIdentifier: "BRTrendingTableViewCell")
     }
     
@@ -43,18 +45,20 @@ extension FavoriteTableView: UITableViewDelegate {
 
 extension FavoriteTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        20
+        recipes.count
     }
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 100
-//    }
+ 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = dequeueReusableCell(withIdentifier: "BRTrendingTableViewCell", for: indexPath) as? FavoriteTableViewCell else {
             return UITableViewCell()
         }
         
+        cell.configureCell(recipe: recipes[indexPath.row])
+        
         return cell
+        
+        
     }
 }
 
@@ -70,6 +74,8 @@ private extension FavoriteTableView {
         bounces = false
         showsVerticalScrollIndicator = true
         translatesAutoresizingMaskIntoConstraints = false
+//        contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        
     }
     
     
