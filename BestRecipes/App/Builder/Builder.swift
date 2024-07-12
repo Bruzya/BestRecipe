@@ -10,6 +10,7 @@ import UIKit
 protocol BuilderProtocol: AnyObject {
     func getMainViewController(router: RouterProtocol) -> UIViewController
     func getTrendingViewController(router: RouterProtocol) -> UIViewController
+//    func getDetailViewController(router: RouterProtocol) -> UIViewController
 }
 
 
@@ -30,4 +31,12 @@ final class Builder: BuilderProtocol {
         
         return viewController
     }
+    
+//        func getDetailViewController(router: RouterProtocol) -> UIViewController {
+//            let viewController = DetailViewController()
+//            let presenter = MainPresenter(view: viewController, router: router)
+//            viewController.presenter = presenter
+//            
+//            return viewController
+//        }
 }

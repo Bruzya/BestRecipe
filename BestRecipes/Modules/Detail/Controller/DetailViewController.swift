@@ -4,18 +4,42 @@
 //
 //  Created by Evgenii Mazrukho on 30.06.2024.
 //
-
 import UIKit
 
 final class DetailViewController: UIViewController {
-    
     private let customView = DetailView()
-    
+    private var presenter: DetailPresenter?
+
+    init(model: RecipeDetailModel) {
+        super.init(nibName: nil, bundle: nil)
+        self.presenter = DetailPresenter(view: customView, model: model)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func loadView() {
         self.view = customView
-        //        navigationBarCustom()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presenter?.viewDidLoad()
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 //
 //
 //extension DetailViewController {

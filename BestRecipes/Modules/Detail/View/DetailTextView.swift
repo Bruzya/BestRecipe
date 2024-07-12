@@ -7,28 +7,18 @@
 
 import UIKit
 
+
 final class DetailText: UIView {
-    
-    private let textInstruction = APIModel(instruction: [
-        
-        Instruction(number: 1, step: "Place eggs in a saucepan and cover with cold water. Bring water to a boil and immediately remove from heat. Cover and let eggs stand in hot water for 10 to 12 minutes. Remove from hot water, cool, peel, and chop."),
-        Instruction(number: 2, step: "Place chopped eggs in a bowl."),
-        Instruction(number: 3, step: "Add chopped tomatoes, corns, lettuce, and any other vegitable of your choice."),
-        Instruction(number: 4, step: "Stir in mayonnaise, green onion, and mustard. Season with paprika, salt, and pepper.")
-    ],
-                                           redText: "Stir and serve on your favorite bread or crackers.")
     
     private let verticalStack = UIStackView()
     private let instructionLabel = UILabel()
     private let textView = UITextView()
-    private let redText = UILabel()
     
     override init(frame: CGRect) {
         super .init(frame: frame)
         setupView()
         setupConstraint()
         setupConfigure()
-        updateInstructionText()
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +31,7 @@ private extension DetailText {
     
     func setupView() {
         addSubviews(verticalStack)
-        verticalStack.addArrangedSubviews([instructionLabel, textView, redText])
+        verticalStack.addArrangedSubviews([instructionLabel, textView])
     }
     
     func setupConstraint() {
@@ -53,7 +43,6 @@ private extension DetailText {
             verticalStack.leadingAnchor.constraint(equalTo: leadingAnchor),
             verticalStack.trailingAnchor.constraint(equalTo: trailingAnchor),
             verticalStack.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
         ])
     }
     
@@ -71,29 +60,17 @@ private extension DetailText {
         textView.isScrollEnabled = false
         textView.textContainerInset = UIEdgeInsets.zero
         textView.textContainer.lineFragmentPadding = 0
-        
-        redText.font = Font.getFont(.poppinsRegular, size: 16)
-        redText.textColor = #colorLiteral(red: 0.9137254902, green: 0.2705882353, blue: 0.3647058824, alpha: 1)
-        redText.numberOfLines = 0
+
     }
 }
 
-private extension DetailText {
+extension DetailText {
     
-    func updateInstructionText() {
-        
-        DispatchQueue.main.async {
-            let instructions = self.textInstruction.instruction.map { " \($0.number). \($0.step)" }
-            self.textView.text = instructions.joined(separator: "\n")
-            self.redText.text = self.textInstruction.redText
+    func updateInstructionText(with steps: [Step]) {
+        let instructions = steps.compactMap { step -> String? in
+            guard let number = step.number, let description = step.step else { return nil }
+            return " \(number). \(description)"
         }
+        textView.text = instructions.joined(separator: "\n")
     }
 }
-
-
-@available(iOS 17.0, *)
-#Preview {
-    let someVC = DetailViewController()
-    return someVC
-}
-
