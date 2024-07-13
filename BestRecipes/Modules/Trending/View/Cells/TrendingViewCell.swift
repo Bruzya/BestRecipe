@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TrendingViewCellProtocol: AnyObject {
+    func saveRecipe(at indexPath: IndexPath, imageData: Data)
+}
+
 final class TrendingViewCell: UICollectionViewCell {
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -67,6 +71,15 @@ final class TrendingViewCell: UICollectionViewCell {
     private lazy var recipeSaveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(.favoritesInactive, for: .normal)
+        
+        let action = UIAction { _ in
+            self.delegate?.saveRecipe(
+                at: self.indexPath!,
+                imageData: self.recipeImageData ?? Data()
+            )
+        }
+        
+        button.addAction(action, for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -121,6 +134,11 @@ final class TrendingViewCell: UICollectionViewCell {
         fontSize: 12.0
     )
     
+    // MARK: - Public Properties
+    weak var delegate: TrendingViewCellProtocol?
+    var indexPath: IndexPath?
+    var recipeImageData: Data?
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -142,6 +160,14 @@ final class TrendingViewCell: UICollectionViewCell {
         titleLabel.text = nil
         authorImageView.image = nil
         authorNameLabel.text = nil
+        recipeSaveButton.setBackgroundImage(nil, for: .normal)
+    }
+    
+    @objc private func saveButtonPressed(_ sender: UIButton) {
+        delegate?.saveRecipe(
+            at: self.indexPath ?? IndexPath(),
+            imageData: self.recipeImageData ?? Data()
+        )
     }
     
     // MARK: - Set Views
@@ -169,8 +195,23 @@ final class TrendingViewCell: UICollectionViewCell {
 
 // MARK: - Configure Cell
 extension TrendingViewCell {
-    func configure() {
-        //
+    func configure(indexPath: IndexPath, isRecipeSaved: Bool) {
+        self.indexPath = indexPath
+        
+        let saveButtonImage: UIImage = isRecipeSaved ? .favoritesActive : .favoritesInactive
+        recipeSaveButton.setBackgroundImage(saveButtonImage, for: .normal)
+    }
+    
+    func updateRecipeImage(with imageData: Data) {
+        self.recipeImageData = imageData
+        recipeImageView.image = UIImage(data: imageData)
+    }
+    
+    func updateSaveButtonImage(isRecipeSaved: Bool) {
+        let newImage: UIImage = isRecipeSaved ? .favoritesActive : .favoritesInactive
+        UIView.transition(with: recipeSaveButton, duration: 0.3, options: .transitionFlipFromLeft, animations: {
+            self.recipeSaveButton.setBackgroundImage(newImage, for: .normal)
+        }, completion: nil)
     }
 }
 
@@ -261,7 +302,7 @@ extension TrendingViewCell {
             recipeTitleStackView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: Metrics.titleStackTopIndent),
             recipeTitleStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             trailingAnchor.constraint(equalToSystemSpacingAfter: recipeTitleStackView.trailingAnchor, multiplier: 1.0),
-            recipeTitleStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            recipeTitleStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
         ])
     }
     

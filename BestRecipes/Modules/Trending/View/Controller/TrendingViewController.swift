@@ -38,7 +38,32 @@ extension TrendingViewController {
 
 // MARK: - Trending Delegate methods
 extension TrendingViewController: TrendingViewProtocol {
+    func updateRecipes() {
+        //
+    }
+}
+
+// MARK: - Collection Cell Delegate methods
+extension TrendingViewController: TrendingViewCellProtocol {
+    func saveRecipe(at indexPath: IndexPath, imageData: Data) {
+        presenter.toggleSaveState(at: indexPath.row)
+        //let selectedRecipe = presenter.getRecipes[indexPath.row]
+        let isRecipeSaved = presenter.isRecipeSaved(at: indexPath.row)
+        
+        if !isRecipeSaved {
+            //presenter.saveRecipe(recipe: selectedRecipe, imageData: imageData)
+        } else {
+            //presenter.deleteRecipe(recipe: selectedRecipe)
+        }
+        updateSaveButtonImage(at: indexPath, isRecipeSaved: isRecipeSaved)
+    }
     
+    private func updateSaveButtonImage(at indexPath: IndexPath, isRecipeSaved: Bool) {
+        guard let cell = trendingView.trendingCollection.cellForItem(at: indexPath) as? TrendingViewCell else {
+            return
+        }
+        cell.updateSaveButtonImage(isRecipeSaved: isRecipeSaved)
+    }
 }
 
 // MARK: - CollectionView DataSource methods
@@ -52,6 +77,9 @@ extension TrendingViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        let isRecipeSaved = presenter.isRecipeSaved(at: indexPath.row)
+        cell.delegate = self
+        cell.configure(indexPath: indexPath, isRecipeSaved: isRecipeSaved)
         cell.setupMockData()
         return cell
     }
@@ -65,7 +93,9 @@ extension TrendingViewController: UICollectionViewDelegate {
             return
         }
         
-        print("cell #\(indexPath.row)")
+        //let selectedRecipe = presenter.getRecipes[indexPath.row]
+        //let recipeImageData = cell.recipeImageData
+        //presenter.showRecipeDetails(for: selectedRecipe, with: recipeImageData)
     }
 }
 
@@ -74,6 +104,6 @@ extension TrendingViewController: UICollectionViewDelegateFlowLayout {
     /// collection item  size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionViewWidth = collectionView.bounds.width
-        return CGSize(width: collectionViewWidth, height: collectionViewWidth * 0.75)
+        return CGSize(width: collectionViewWidth, height: collectionViewWidth * 0.72)
     }
 }
