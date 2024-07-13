@@ -2,12 +2,14 @@
 //  TrendingPresenter.swift
 //  BestRecipes
 //
-//  Created by Evgenii Mazrukho on 02.07.2024.
+//  Created by realeti on 13.07.2024.
 //
 
 import UIKit
 
-//MARK: - Presenter Protocol
+protocol TrendingViewProtocol: AnyObject {
+    
+}
 
 protocol TrendingPresenterProtocol {
     init(view: TrendingViewProtocol, router: RouterProtocol)
