@@ -14,14 +14,14 @@ protocol OnboardingCollectionDelegate: AnyObject{
 
 class OnBoardingCollectionViewPresenter: OnboardingCollectionDelegate {
     
-    private var pageViewController: OnboardingCollectionView?
+    var pageViewController: OnboardingCollectionView?
     
-    init(pageViewController: OnboardingCollectionView) {
+    init(pageViewController: OnboardingCollectionView?) {
         self.pageViewController = pageViewController
     }
     
     func setNewsControllers() {
-        pageViewController?.moveToNextViewController()
+        print("11111")
     }
     
 }

@@ -28,7 +28,8 @@ extension OnboardingCollectionView: UIPageViewControllerDelegate, UIPageViewCont
         return pageVC[previosIndes]
     }
     
-    
-    
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return pageVC.count
+    }
     
 }

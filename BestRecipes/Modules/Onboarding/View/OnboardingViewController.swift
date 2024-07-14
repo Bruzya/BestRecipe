@@ -25,21 +25,13 @@ class OnboardingViewController: UIViewController, OnboardingViewControllerDelega
         return image
     }()
     
-    private lazy var overlayView: CAGradientLayer = {
-        let view = CAGradientLayer()
-        view.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        view.locations = [0.0, 1.0]
-        view.startPoint = CGPoint(x: 0.0, y: 0.0)
-        view.endPoint = CGPoint(x: 0.0, y: 1.0)
-        view.frame = onBoardingImage.bounds
-        onBoardingImage.layer.insertSublayer(view, at: 0)
-        return view
-    }()
-    
-    private lazy var overlayViewView: UIView = {
-        let view = UIView()
-        
-        return view
+    private lazy var layerProImage: UIImageView = {
+        let image = UIImageView()
+        image.image = .layerPro
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
     }()
     
     //MARK: - create recipes label
@@ -148,6 +140,8 @@ class OnboardingViewController: UIViewController, OnboardingViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaults.standard.set(true, forKey: "OnBoardingCompleted")
+        
         configure()
         
         setupUI()
@@ -173,7 +167,7 @@ private extension OnboardingViewController {
     
     func setupUI() {
         
-        view.addSubviews(onBoardingImage, starImage, premiumStack, stackNamedAndDiscription, startButton)
+        view.addSubviews(onBoardingImage,layerProImage ,starImage, premiumStack, stackNamedAndDiscription, startButton)
         premiumStack.addArrangedSubviews([countLoadLabel, premiumLabel])
         stackNamedAndDiscription.addArrangedSubviews([nameAppLabel, discriptionLabel])
         
@@ -185,6 +179,11 @@ private extension OnboardingViewController {
             onBoardingImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             onBoardingImage.topAnchor.constraint(equalTo: view.topAnchor),
             onBoardingImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            layerProImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            layerProImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            layerProImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            layerProImage.topAnchor.constraint(equalTo: view.topAnchor),
             
             //MARK: - Star Image
             
@@ -202,13 +201,13 @@ private extension OnboardingViewController {
             
             stackNamedAndDiscription.leadingAnchor.constraint(equalTo: onBoardingImage.leadingAnchor, constant: 35),
             stackNamedAndDiscription.trailingAnchor.constraint(equalTo: onBoardingImage.trailingAnchor, constant: -35),
-            stackNamedAndDiscription.topAnchor.constraint(equalTo: premiumStack.bottomAnchor, constant: 411),
+            stackNamedAndDiscription.topAnchor.constraint(equalTo: premiumStack.bottomAnchor, constant: 370),
             
             //MARK: - Start Button
             
             startButton.leadingAnchor.constraint(equalTo: onBoardingImage.leadingAnchor, constant: 110),
             startButton.trailingAnchor.constraint(equalTo: onBoardingImage.trailingAnchor, constant: -110),
-            startButton.topAnchor.constraint(equalTo: stackNamedAndDiscription.bottomAnchor, constant: 5),
+            startButton.topAnchor.constraint(equalTo: stackNamedAndDiscription.bottomAnchor, constant: 30),
             startButton.heightAnchor.constraint(equalToConstant: 50)
             
             
