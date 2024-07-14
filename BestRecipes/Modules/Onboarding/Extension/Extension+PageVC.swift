@@ -1,0 +1,34 @@
+//
+//  Extension+CV.swift
+//  BestRecipes
+//
+//  Created by Drolllted on 07.07.2024.
+//
+
+import UIKit
+
+extension OnboardingCollectionView: UIPageViewControllerDelegate, UIPageViewControllerDataSource{
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = pageVC.firstIndex(of: viewController) else {return nil}
+        let previosIndes = viewControllerIndex - 1
+        guard previosIndes >= 0 else {return nil}
+        guard pageVC.count > previosIndes else {
+            return nil
+        }
+        return pageVC[previosIndes]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
+        guard let viewControllerIndex = pageVC.firstIndex(of: viewController) else {return nil}
+        let previosIndes = viewControllerIndex + 1
+        guard pageVC.count != previosIndes else {return nil }
+        guard pageVC.count > previosIndes else {return nil }
+        
+        return pageVC[previosIndes]
+    }
+    
+    
+    
+    
+}
