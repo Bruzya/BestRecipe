@@ -24,7 +24,6 @@ class OnBoardingPresenter: OnboardingPresenterDelegate {
     
     func onTapButton() {
         router.pushOBInCV()
-        print("111")
     }
     
     func segueNextView() {

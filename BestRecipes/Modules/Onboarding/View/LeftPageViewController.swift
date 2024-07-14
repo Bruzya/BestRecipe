@@ -7,7 +7,17 @@
 
 import UIKit
 
+protocol LeftPageDelegate: AnyObject {
+    func getNextController()
+}
+
 class LeftPageViewController: UIViewController{
+    
+    var presenter: OnboardingCollectionDelegate?
+    private var onBoardingPresenter: OnBoardingCollectionViewPresenter?
+    
+    
+    
     
     private lazy var backView: UIView = {
         let view = UIView()
@@ -29,8 +39,8 @@ class LeftPageViewController: UIViewController{
     
     private lazy var overlayView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.4).cgColor
         view.clipsToBounds = true
         
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +50,6 @@ class LeftPageViewController: UIViewController{
     
     private lazy var textLabelView: UILabel = {
         let label = UILabel()
-        label.text = "Recipes from all over the World"
         label.font = UIFont(name: "Poppins-Bold", size: 40)
         label.textColor = .white
         label.textAlignment = .center
@@ -50,10 +59,20 @@ class LeftPageViewController: UIViewController{
         
         return label
     }()
+//    
+//    private lazy var textLabelGreenView: UILabel = {
+//        let label = UILabel()
+//        label.text = ""
+//        label.font = UIFont(name: "Poppins-Bold", size: 40)
+//        label.textColor = .systemGreen
+//        label.textAlignment = .center
+//        label.numberOfLines = 1
+//        return label
+//    }()
     
     private lazy var pageIndicator: UIView = {
         let view = UIView()
-        view.backgroundColor = .green
+        view.backgroundColor = .systemGreen
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
         
@@ -104,26 +123,78 @@ class LeftPageViewController: UIViewController{
         return stack
     }()
     
-
+    private lazy var continuesButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        button.backgroundColor = .red
+        button.setTitle("Continue", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Poppins-Regular", size: 20)
+        button.titleLabel?.textAlignment = .center
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    private lazy var skipButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("skip", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Poppins-Regular", size: 10)
+        button.titleLabel?.textColor = .white
+        button.titleLabel?.textAlignment = .center
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
+        let whiteText = "Recipes from all "
+        let secondAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        let firstAttributes = [NSAttributedString.Key.foregroundColor : UIColor.systemGreen]
+        
+        let labelTextWhite = NSMutableAttributedString(string: whiteText, attributes: secondAttributes)
+        let labelTextGreen = NSMutableAttributedString(string: "over the World", attributes: firstAttributes)
+        
+        let combinensString = NSMutableAttributedString()
+        combinensString.append(labelTextWhite)
+        combinensString.append(labelTextGreen)
+        
+        textLabelView.attributedText = combinensString
+        
+        
+        
         setupUI()
         
         constraintsUI()
+        
+        continuesButton.addTarget(self, action: #selector(getNextController), for: .touchUpInside)
+        skipButton.addTarget(self, action: #selector(skipOnMainVC), for: .touchUpInside)
     }
     
+    @objc func skipOnMainVC() {
+        print("123")
+    }
     
+    @objc func getNextController(){
+        if let onBoardingCollectionViewController = (self.parent as? OnboardingCollectionView?) {
+            onBoardingCollectionViewController?.goToTheNextPage()
+        }
+    }
 }
+
 
 private extension LeftPageViewController{
     
     func setupUI(){
         view.addSubview(backView)
-        backView.addSubviews(backgroundImageView, overlayView, textLabelView, stackIndicator)
+        backView.addSubviews(backgroundImageView, overlayView, textLabelView, stackIndicator, continuesButton, skipButton)
         stackIndicator.addArrangedSubviews([pageIndicator, pageIndicatorNon, pageIndicatorNon1])
     }
     
@@ -151,7 +222,19 @@ private extension LeftPageViewController{
             
             stackIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackIndicator.topAnchor.constraint(equalTo: textLabelView.bottomAnchor, constant: 30),
-            stackIndicator.heightAnchor.constraint(equalToConstant: 10)
+            stackIndicator.heightAnchor.constraint(equalToConstant: 10),
+            
+            continuesButton.topAnchor.constraint(equalTo: stackIndicator.bottomAnchor, constant: 20),
+            continuesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            continuesButton.heightAnchor.constraint(equalToConstant: 45),
+            continuesButton.widthAnchor.constraint(equalToConstant: 200),
+            
+            skipButton.topAnchor.constraint(equalTo: continuesButton.bottomAnchor, constant: 5),
+            skipButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            skipButton.heightAnchor.constraint(equalToConstant: 20),
+            skipButton.widthAnchor.constraint(equalToConstant: 200),
+            
+            
         ])
     }
     

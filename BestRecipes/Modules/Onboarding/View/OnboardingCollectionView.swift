@@ -17,13 +17,13 @@ class OnboardingCollectionView: UIPageViewController {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
         dataSource = self
         delegate = self
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
         
         if let firstViewController = pageVC.first {
             setViewControllers([firstViewController],
-                              direction: .forward,
-                              animated: true,
-                              completion: nil)
+                               direction: .forward,
+                               animated: true,
+                               completion: nil)
         }
         
     }
@@ -39,18 +39,14 @@ class OnboardingCollectionView: UIPageViewController {
         
     }
     
-    func moveToNextViewController() {
-        if let currentViewController = viewControllers?.first,
-           let currentIndex = pageVC.firstIndex(of: currentViewController),
-           currentIndex < pageVC.count - 1 {
-            let nextViewController = pageVC[currentIndex + 1]
-            setViewControllers([nextViewController],
-                               direction: .forward,
-                               animated: true,
-                               completion: nil)
-        }
-        
+    func goToTheNextPage(animated: Bool = true) {
+        guard let currentPage = viewControllers?[0] else {return}
+        guard let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentPage) else {return}
+        setViewControllers([nextPage], direction: .forward, animated: animated, completion: nil)
+        print("123")
     }
+        
 }
+
 
 
