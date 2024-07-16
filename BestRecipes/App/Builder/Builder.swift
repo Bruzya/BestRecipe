@@ -13,6 +13,8 @@ protocol BuilderProtocol: AnyObject {
     func createSearchModule(router: RouterProtocol) -> UIViewController
     func createCreateRecipeModule(router: RouterProtocol) -> UIViewController
     func configureModule(for viewController: UIViewController, with router: RouterProtocol)
+    func createOnboardingModule(router: RouterProtocol) -> UIViewController
+    func createOnboardingCVModule(router: RouterProtocol) -> UIViewController
 }
 
 
@@ -88,6 +90,21 @@ final class Builder: BuilderProtocol {
         let presenter = CreateRecipePresenter(vc: viewController, router: router)
         viewController.presenter = presenter
         viewController.hidesBottomBarWhenPushed = true
+        return viewController
+    }
+    
+    func createOnboardingModule(router: RouterProtocol) -> UIViewController {
+        let viewController = OnboardingViewController()
+        let presenter = OnBoardingPresenter(view: viewController, router: router)
+        viewController.presenter = presenter
+        
+        return viewController
+    }
+    
+    func createOnboardingCVModule(router: RouterProtocol) -> UIViewController{
+        let viewController = OnboardingCollectionView()
+        let presenter = OnBoardingCollectionViewPresenter(view: viewController, router: router)
+        viewController.presenter = presenter
         return viewController
     }
 }

@@ -18,6 +18,7 @@ protocol RouterProtocol: AnyObject {
     func showSearch()
     func popToRoot()
     func popToPrevious()
+    func goToPageVC()
 }
 
 final class Router: RouterProtocol {
@@ -80,4 +81,14 @@ final class Router: RouterProtocol {
     func popToPrevious() {
         navigationController.popViewController(animated: true)
     }
+    
+    func goToPageVC() {
+//        let router = self
+//        let goToOnboardingCollectionView = builder.createOnboardingCVModule(router: router)
+//        navigationController.pushViewController(goToOnboardingCollectionView, animated: true)
+        let vc = OnboardingCollectionView()
+        navigationController.pushViewController(vc, animated: true)
+        
+    }
+    
 }

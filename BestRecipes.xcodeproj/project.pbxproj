@@ -86,6 +86,13 @@
 		C6BEC3072C42DFF300256140 /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEC3062C42DFF300256140 /* TrendingView.swift */; };
 		C6BEC3092C42E00000256140 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEC3082C42E00000256140 /* TrendingViewController.swift */; };
 		C6FC31F82C3F18DE00F5191F /* UIButton + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC31F72C3F18DE00F5191F /* UIButton + Extensions.swift */; };
+		DD9134522C43F2BF00DC9739 /* OnboardingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9134512C43F2BF00DC9739 /* OnboardingCollectionView.swift */; };
+		DD9134542C43F2D900DC9739 /* LeftPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9134532C43F2D900DC9739 /* LeftPageViewController.swift */; };
+		DD9134562C43F2ED00DC9739 /* MiddlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9134552C43F2ED00DC9739 /* MiddlePageViewController.swift */; };
+		DD9134582C43F30400DC9739 /* LastPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9134572C43F30400DC9739 /* LastPageViewController.swift */; };
+		DD91345A2C43F32B00DC9739 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9134592C43F32B00DC9739 /* OnboardingPresenter.swift */; };
+		DD91345C2C43F35200DC9739 /* OnboardingCollectionViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91345B2C43F35200DC9739 /* OnboardingCollectionViewPresenter.swift */; };
+		DD91345F2C43F37600DC9739 /* Extension+PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91345E2C43F37600DC9739 /* Extension+PageVC.swift */; };
 		FC5826182C43077100726275 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5826172C43077100726275 /* FavoritePresenter.swift */; };
 		FC58261A2C43078900726275 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5826192C43078900726275 /* FavoriteViewController.swift */; };
 		FC58261C2C4307BF00726275 /* FavoriteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC58261B2C4307BF00726275 /* FavoriteTableView.swift */; };
@@ -173,6 +180,13 @@
 		C6BEC3062C42DFF300256140 /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
 		C6BEC3082C42E00000256140 /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		C6FC31F72C3F18DE00F5191F /* UIButton + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extensions.swift"; sourceTree = "<group>"; };
+		DD9134512C43F2BF00DC9739 /* OnboardingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionView.swift; sourceTree = "<group>"; };
+		DD9134532C43F2D900DC9739 /* LeftPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftPageViewController.swift; sourceTree = "<group>"; };
+		DD9134552C43F2ED00DC9739 /* MiddlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlePageViewController.swift; sourceTree = "<group>"; };
+		DD9134572C43F30400DC9739 /* LastPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastPageViewController.swift; sourceTree = "<group>"; };
+		DD9134592C43F32B00DC9739 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
+		DD91345B2C43F35200DC9739 /* OnboardingCollectionViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewPresenter.swift; sourceTree = "<group>"; };
+		DD91345E2C43F37600DC9739 /* Extension+PageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+PageVC.swift"; sourceTree = "<group>"; };
 		FC5826172C43077100726275 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		FC5826192C43078900726275 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		FC58261B2C4307BF00726275 /* FavoriteTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableView.swift; sourceTree = "<group>"; };
@@ -491,7 +505,9 @@
 		526DF8012C30DBD2008A7818 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				522898A32C31DD550013FF87 /* OnboardingViewController.swift */,
+				DD91345D2C43F36800DC9739 /* Extension */,
+				DD91344F2C43F28000DC9739 /* Presenter */,
+				DD91344E2C43F27C00DC9739 /* View */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -663,6 +679,35 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		DD91344E2C43F27C00DC9739 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				522898A32C31DD550013FF87 /* OnboardingViewController.swift */,
+				DD9134512C43F2BF00DC9739 /* OnboardingCollectionView.swift */,
+				DD9134532C43F2D900DC9739 /* LeftPageViewController.swift */,
+				DD9134552C43F2ED00DC9739 /* MiddlePageViewController.swift */,
+				DD9134572C43F30400DC9739 /* LastPageViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD91344F2C43F28000DC9739 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DD9134592C43F32B00DC9739 /* OnboardingPresenter.swift */,
+				DD91345B2C43F35200DC9739 /* OnboardingCollectionViewPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		DD91345D2C43F36800DC9739 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DD91345E2C43F37600DC9739 /* Extension+PageVC.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		FC5826142C4306EF00726275 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,7 +802,10 @@
 				245EF2032C43D9E500F89FA4 /* CreateRecipeIngredientCell.swift in Sources */,
 				245EF1FE2C43AE6800F89FA4 /* (null) in Sources */,
 				245EF1FD2C43AE6300F89FA4 /* CreateRecipeView.swift in Sources */,
+				DD91345A2C43F32B00DC9739 /* OnboardingPresenter.swift in Sources */,
 				526DF7F92C30D98E008A7818 /* Font.swift in Sources */,
+				DD9134522C43F2BF00DC9739 /* OnboardingCollectionView.swift in Sources */,
+				DD9134562C43F2ED00DC9739 /* MiddlePageViewController.swift in Sources */,
 				C6BEC2FF2C42DF7F00256140 /* TrendingPresenter.swift in Sources */,
 				526DF7E22C30D84F008A7818 /* LaunchViewController.swift in Sources */,
 				C65550072C3C4E350016FF73 /* SearchPresenter.swift in Sources */,
@@ -802,10 +850,12 @@
 				526DF80A2C30DE07008A7818 /* UIView + ext.swift in Sources */,
 				522898FF2C3B1D220013FF87 /* BRPopularModel.swift in Sources */,
 				FC58261E2C4307DF00726275 /* FavoriteTableViewCell.swift in Sources */,
+				DD91345C2C43F35200DC9739 /* OnboardingCollectionViewPresenter.swift in Sources */,
 				C65550052C3C4E160016FF73 /* SearchViewController.swift in Sources */,
 				522898D52C32F2900013FF87 /* BRMockData.swift in Sources */,
 				FC5826182C43077100726275 /* FavoritePresenter.swift in Sources */,
 				FC58261C2C4307BF00726275 /* FavoriteTableView.swift in Sources */,
+				DD91345F2C43F37600DC9739 /* Extension+PageVC.swift in Sources */,
 				522898A82C31DD6A0013FF87 /* MainViewController.swift in Sources */,
 				C6A3A7372C41AE3E0079B648 /* EmptySearchViewCell.swift in Sources */,
 				24C02B472C432FB9008768F0 /* DetailTextView.swift in Sources */,
@@ -830,6 +880,8 @@
 				C690296B2C37369B00E4F985 /* NotificationViewController.swift in Sources */,
 				C690296D2C3736B600E4F985 /* ProfileViewController.swift in Sources */,
 				522899012C3B1D510013FF87 /* BRCuisineModel.swift in Sources */,
+				DD9134582C43F30400DC9739 /* LastPageViewController.swift in Sources */,
+				DD9134542C43F2D900DC9739 /* LeftPageViewController.swift in Sources */,
 				522898C92C32E9980013FF87 /* BRSeeAllHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
