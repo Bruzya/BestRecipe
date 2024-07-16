@@ -17,6 +17,22 @@ final class OnboardingViewController: UIViewController, OnboardingViewController
     var presenter: OnboardingPresenterDelegate?
     var router: RouterProtocol?
     
+    let colorLabel: UILabel = {
+        let label = UILabel()
+        
+        let text = "Это пример текста с выделенным словом"
+        
+        let attributedString = NSMutableAttributedString(string: text)
+        let range = (text as NSString).range(of: "выделенным")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
+        
+        label.textColor = .white
+        label.attributedText = attributedString
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private lazy var onBoardingImage: UIImageView = {
         let image = UIImageView()
         image.image = .homePage
@@ -166,7 +182,7 @@ private extension OnboardingViewController {
     
     func setupUI() {
         
-        view.addSubviews(onBoardingImage, layerProImage ,starImage, premiumStack, stackNamedAndDiscription, startButton)
+        view.addSubviews(onBoardingImage, layerProImage ,starImage, premiumStack, stackNamedAndDiscription, startButton, colorLabel)
         premiumStack.addArrangedSubviews([countLoadLabel, premiumLabel])
         stackNamedAndDiscription.addArrangedSubviews([nameAppLabel, discriptionLabel])
         
@@ -207,9 +223,10 @@ private extension OnboardingViewController {
             startButton.leadingAnchor.constraint(equalTo: onBoardingImage.leadingAnchor, constant: 110),
             startButton.trailingAnchor.constraint(equalTo: onBoardingImage.trailingAnchor, constant: -110),
             startButton.topAnchor.constraint(equalTo: stackNamedAndDiscription.bottomAnchor, constant: 30),
-            startButton.heightAnchor.constraint(equalToConstant: 50)
+            startButton.heightAnchor.constraint(equalToConstant: 50),
             
-            
+            colorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            colorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     

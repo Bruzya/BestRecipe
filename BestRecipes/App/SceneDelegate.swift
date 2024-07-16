@@ -16,7 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = OnboardingViewController()
+        
+        #warning("Условие для перехода на OnBoarding / Main Screen")
+        if true {
+            window?.rootViewController = OnboardingViewController()
+        } else {
+            
+        }
+        
         window?.makeKeyAndVisible()
     }
 }
