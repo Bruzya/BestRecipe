@@ -11,39 +11,54 @@ protocol CreateRecipeViewControllerProtocol: AnyObject {
 }
 
 final class CreateRecipeViewController: UIViewController {
+    
+    private var createRecipeView: CreateRecipeView?
     var presenter: CreateRecipePresenterProtocol?
     
-    private let createRecipeView = CreateRecipeView()
-        
     override func loadView() {
+        createRecipeView = CreateRecipeView()
+        createRecipeView?.delegate = self
         view = createRecipeView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createRecipeView.delegate = self
         
-        view.backgroundColor = .white
+        createRecipeView?.tableView.dataSource = self
+        createRecipeView?.tableView.delegate = self
+                
+        view.backgroundColor = .systemPink
+        
+        presenter?.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        tabBarController?.tabBar.isHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
-    }
+}
+
+//MARK: - CreateRecipeViewControllerProtocol{
+extension CreateRecipeViewController: CreateRecipeViewControllerProtocol {
 }
 
 //MARK: - CreateRecipeViewDelegate
 extension CreateRecipeViewController: CreateRecipeViewDelegate {
     func createRecipeButtonPressed() {
-        presenter?.createRecipe()
+        print("CreateRecipeViewController -> createRecipeButtonPressed()")
     }
 }
 
-//MARK: - CreateRecipeViewControllerProtocol
-extension CreateRecipeViewController: CreateRecipeViewControllerProtocol {
+//MARK: - UITableViewDataSource
+extension CreateRecipeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter?.numberOfRows ?? 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        return cell
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension CreateRecipeViewController: UITableViewDelegate {
+    
 }
